@@ -12,7 +12,7 @@ from pydantic import BaseModel
 load_dotenv()
 
 from app.db import get_transactions, init_db, insert_transaction
-from app.services.ai_service import analyze_message, analyze_payment_image, transcribe_audio, transcribe_audio_bytes
+from app.services.ai_service import analyze_conversation, analyze_message, analyze_payment_image, transcribe_audio, transcribe_audio_bytes
 from app.services.pdf_service import generate_pdf_report
 
 VERIFY_TOKEN = os.getenv("VERIFY_TOKEN", "c2c_verify")
@@ -129,6 +129,42 @@ async def send_audio(body: AudioRequest):
         )
     reply = _build_reply(result)
     return JSONResponse({"reply": reply, "transcript": transcript})
+
+
+class ConversationMessage(BaseModel):
+    role: str
+    content: str
+
+
+class ConversationRequest(BaseModel):
+    phone_number: str
+    history: list[ConversationMessage]
+    recorded_txns: list[dict] = []
+
+
+@app.post("/conversation")
+def conversation_turn(body: ConversationRequest):
+    history = [m.model_dump() for m in body.history]
+    result = analyze_conversation(history, body.recorded_txns)
+
+    recorded_id = None
+    if result["action"] == "record" and result["intent"] in ("income", "expense") and result["amount"] > 0:
+        recorded_id = insert_transaction(
+            body.phone_number, result["intent"], result["amount"],
+            result["category"], result["description"],
+        )
+
+    return JSONResponse({
+        "action": result["action"],
+        "reply": result["reply"],
+        "recorded_id": recorded_id,
+        "transaction": {
+            "intent": result["intent"],
+            "amount": result["amount"],
+            "category": result["category"],
+            "description": result["description"],
+        } if recorded_id else None,
+    })
 
 
 class ImageRequest(BaseModel):

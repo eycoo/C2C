@@ -516,6 +516,28 @@
     50%       { box-shadow: 0 0 0 7px rgba(248,113,113,0); }
   }
   .btn-icon.recording { animation: pulse-mic 1.1s ease infinite; }
+
+  .role-toggle {
+    height: 38px;
+    padding: 0 14px;
+    border-radius: 19px;
+    background: var(--wa-panel);
+    border: 1px solid var(--wa-border);
+    color: var(--wa-text);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    flex-shrink: 0;
+    transition: all .15s;
+    white-space: nowrap;
+  }
+  .role-toggle:hover { border-color: var(--wa-green); }
+  .role-toggle.lawan {
+    background: rgba(248,113,113,0.12);
+    border-color: rgba(248,113,113,0.4);
+    color: #f87171;
+  }
 </style>
 </head>
 <body>
@@ -532,24 +554,30 @@
 <main>
   <!-- LEFT: Chat Simulator -->
   <div class="panel-left">
-    <div class="panel-section-label">Simulator WhatsApp</div>
+    <div class="panel-section-label" style="display:flex;align-items:center;justify-content:space-between;padding-right:22px">
+      Simulator WhatsApp
+      <button class="btn secondary" style="padding:4px 12px;font-size:11px" onclick="clearConversation()">Percakapan Baru</button>
+    </div>
 
     <div class="phone-bar">
       <input id="phoneInput" type="text" value="628123456789" placeholder="Nomor HP" />
     </div>
 
     <div class="quick-chips">
-      <span class="chip" onclick="fillMsg('habis 20rb buat makan siang')">Makan 20rb</span>
-      <span class="chip" onclick="fillMsg('terima bayaran 500rb dari Budi buat kue')">Terima 500rb</span>
-      <span class="chip" onclick="fillMsg('bayar bensin 80 ribu')">Bensin 80rb</span>
-      <span class="chip" onclick="fillMsg('dapat uang 1.5 juta dari jualan online')">Jualan 1.5jt</span>
-      <span class="chip" onclick="fillMsg('beli bahan baku 250000')">Bahan baku 250rb</span>
-      <span class="chip" onclick="fillMsg('terima DP 100rb dari pelanggan kue ulang tahun')">DP 100rb</span>
+      <span class="chip" onclick="setRoleAndMsg('lawan','halo, mau pesan kue ulang tahun bisa?')">Pembeli tanya</span>
+      <span class="chip" onclick="setRoleAndMsg('saya','bisa, harganya 200rb. mau ukuran berapa?')">Saya jawab</span>
+      <span class="chip" onclick="setRoleAndMsg('lawan','ok deal, ukuran 20cm. udah transfer 200rb ya')">Transfer 200rb</span>
+      <span class="chip" onclick="setRoleAndMsg('lawan','mau order lagi, bisa 150rb?')">Tawar harga</span>
+      <span class="chip" onclick="setRoleAndMsg('saya','mau pesan tepung 5kg ke supplier')">Order supplier</span>
+      <span class="chip" onclick="setRoleAndMsg('lawan','ok 250rb, sudah kami kirim')">Supplier konfirm</span>
     </div>
 
     <div class="chat-window" id="chatWindow"></div>
 
     <div class="chat-input">
+      <button class="role-toggle" id="roleToggle" onclick="toggleRole()" title="Ganti peran (Saya/Lawan)">
+        <span id="roleLabel">Saya</span>
+      </button>
       <button class="btn-icon" id="micBtn" onclick="toggleRecording()" title="Rekam suara">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
@@ -638,12 +666,41 @@
 <script>
 const API = '';
 
+// Conversation state
+let currentRole = 'saya';
+let conversation = [];
+let recordedTxns = [];
+
 function phone() { return document.getElementById('phoneInput').value.trim() || '628000000000'; }
 
 function fillMsg(text) {
   const ta = document.getElementById('msgInput');
   ta.value = text;
   ta.focus();
+}
+
+function setRoleAndMsg(role, text) {
+  if (currentRole !== role) toggleRole();
+  fillMsg(text);
+}
+
+function toggleRole() {
+  currentRole = currentRole === 'saya' ? 'lawan' : 'saya';
+  const btn = document.getElementById('roleToggle');
+  const label = document.getElementById('roleLabel');
+  if (currentRole === 'lawan') {
+    label.textContent = 'Lawan';
+    btn.classList.add('lawan');
+  } else {
+    label.textContent = 'Saya';
+    btn.classList.remove('lawan');
+  }
+}
+
+function clearConversation() {
+  conversation = [];
+  recordedTxns = [];
+  document.getElementById('chatWindow').innerHTML = '';
 }
 
 function fmtRp(n) {
@@ -691,14 +748,20 @@ async function sendMessage() {
   btn.disabled = true;
   ta.value = '';
 
-  addBubble(text, 'user');
-  const loadingBubble = addBubble('Memproses...', 'system');
+  conversation.push({ role: currentRole, content: text });
+  addBubble(text, currentRole === 'saya' ? 'user' : 'bot');
+
+  const loadingBubble = addBubble('Menganalisis percakapan...', 'system');
 
   try {
-    const res = await fetch(`${API}/send`, {
+    const res = await fetch(`${API}/conversation`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ phone_number: phone(), message: text })
+      body: JSON.stringify({
+        phone_number: phone(),
+        history: conversation,
+        recorded_txns: recordedTxns,
+      }),
     });
 
     const data = await res.json();
@@ -707,8 +770,16 @@ async function sendMessage() {
     if (!res.ok) {
       addBubble('Error: ' + (data.detail || 'Server error'), 'error');
     } else {
-      addBubble(data.reply, 'bot');
-      loadTransactions();
+      if (data.transaction) {
+        recordedTxns.push({ amount: data.transaction.amount, description: data.transaction.description });
+        const label = data.transaction.intent === 'income' ? 'Pemasukan' : 'Pengeluaran';
+        addBubble(`✓ Tercatat: ${label} Rp ${data.transaction.amount.toLocaleString('id-ID')}`, 'system');
+        loadTransactions();
+      }
+      if (data.reply && data.reply.trim()) {
+        conversation.push({ role: 'saya', content: data.reply });
+        addBubble(data.reply, 'user');
+      }
     }
   } catch (e) {
     loadingBubble.remove();

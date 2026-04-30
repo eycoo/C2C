@@ -32,16 +32,17 @@ def insert_transaction(
     amount: int,
     category: str,
     description: str,
-) -> None:
-    with get_conn() as conn:
-        conn.execute(
-            """
-            INSERT INTO transactions (phone_number, intent, amount, category, description)
-            VALUES (?, ?, ?, ?, ?)
-            """,
-            (phone_number, intent, amount, category, description),
-        )
-        conn.commit()
+) -> int:
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO transactions (phone_number, intent, amount, category, description) VALUES (?, ?, ?, ?, ?)",
+        (phone_number, intent, amount, category, description),
+    )
+    conn.commit()
+    tx_id = cur.lastrowid
+    conn.close()
+    return tx_id
 
 
 def get_transactions(phone_number: str) -> list[sqlite3.Row]:
