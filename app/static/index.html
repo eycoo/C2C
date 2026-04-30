@@ -564,12 +564,12 @@
     </div>
 
     <div class="quick-chips">
-      <span class="chip" onclick="setRoleAndMsg('lawan','halo, mau pesan kue ulang tahun bisa?')">Pembeli tanya</span>
-      <span class="chip" onclick="setRoleAndMsg('saya','bisa, harganya 200rb. mau ukuran berapa?')">Saya jawab</span>
-      <span class="chip" onclick="setRoleAndMsg('lawan','ok deal, ukuran 20cm. udah transfer 200rb ya')">Transfer 200rb</span>
-      <span class="chip" onclick="setRoleAndMsg('lawan','mau order lagi, bisa 150rb?')">Tawar harga</span>
-      <span class="chip" onclick="setRoleAndMsg('saya','mau pesan tepung 5kg ke supplier')">Order supplier</span>
-      <span class="chip" onclick="setRoleAndMsg('lawan','ok 250rb, sudah kami kirim')">Supplier konfirm</span>
+      <span class="chip" onclick="setRoleAndMsg('lawan','halo kak, mau pesan kue ulang tahun bisa?')">Pembeli tanya</span>
+      <span class="chip" onclick="setRoleAndMsg('lawan','ok deal, udah transfer 200rb ya kak')">Pembeli transfer</span>
+      <span class="chip" onclick="setRoleAndMsg('lawan','mau order lagi, bisa 150rb aja?')">Tawar harga</span>
+      <span class="chip" onclick="setRoleAndMsg('saya','mau pesan tepung 5kg, berapa harganya?')">Order ke supplier</span>
+      <span class="chip" onclick="setRoleAndMsg('lawan','250rb kak, boleh transfer ke BCA xxx')">Supplier kasih harga</span>
+      <span class="chip" onclick="setRoleAndMsg('saya','oke sip, udah aku transfer 250rb ya')">Saya bayar supplier</span>
     </div>
 
     <div class="chat-window" id="chatWindow"></div>
@@ -776,7 +776,8 @@ async function sendMessage() {
         addBubble(`✓ Tercatat: ${label} Rp ${data.transaction.amount.toLocaleString('id-ID')}`, 'system');
         loadTransactions();
       }
-      if (data.reply && data.reply.trim()) {
+      // Bot hanya auto-reply saat Lawan yang kirim (simulasi WA Business)
+      if (currentRole === 'lawan' && data.reply && data.reply.trim()) {
         conversation.push({ role: 'saya', content: data.reply });
         addBubble(data.reply, 'user');
       }
