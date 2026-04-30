@@ -1072,7 +1072,18 @@ document.getElementById('imageFileInput').addEventListener('change', async funct
     if (!resp.ok) {
       addBubble('Error: ' + (data.detail || 'Server error'), 'error');
     } else {
-      addBubble(data.reply, 'bot');
+      // Add image event to conversation history
+      const imgDesc = data.receipt && data.receipt.is_receipt
+        ? `[mengirim bukti transfer${data.receipt.amount ? ' Rp ' + data.receipt.amount.toLocaleString('id-ID') : ''}]`
+        : '[mengirim gambar]';
+      conversation.push({ role: currentRole, content: imgDesc });
+
+      // Seller reply side: opposite of image sender
+      const replyRole = currentRole === 'saya' ? 'bot' : 'user';
+      const replyLabel = currentRole === 'saya'
+        ? 'Lawan'
+        : (simMode === 'buyer' ? 'Penjual (AI)' : 'Saya');
+      addBubble(data.reply, replyRole, replyLabel);
       loadTransactions();
     }
   } catch(e) {
