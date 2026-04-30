@@ -517,27 +517,81 @@
   }
   .btn-icon.recording { animation: pulse-mic 1.1s ease infinite; }
 
+  /* Mode selector */
+  .mode-bar {
+    display: flex;
+    gap: 6px;
+    padding: 0 22px 12px;
+  }
+  .mode-btn {
+    flex: 1;
+    padding: 7px 0;
+    border-radius: var(--radius-sm);
+    background: var(--wa-header);
+    border: 1px solid var(--wa-border);
+    color: var(--wa-text-sub);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all .15s;
+    text-align: center;
+  }
+  .mode-btn.active {
+    background: rgba(0,168,132,0.15);
+    border-color: var(--wa-green);
+    color: var(--wa-green-light);
+  }
+  .mode-btn:hover:not(.active) { border-color: var(--wa-text-muted); color: var(--wa-text); }
+
+  /* Role badge on bubbles */
+  .bubble-wrap { display: flex; flex-direction: column; }
+  .bubble-wrap.user { align-items: flex-end; }
+  .bubble-wrap.bot  { align-items: flex-start; }
+  .bubble-label {
+    font-size: 10.5px;
+    color: var(--wa-text-muted);
+    margin-bottom: 2px;
+    padding: 0 4px;
+    font-weight: 500;
+  }
+  .bubble-wrap.user .bubble { align-self: auto; }
+  .bubble-wrap.bot  .bubble { align-self: auto; }
+
+  /* Role toggle */
   .role-toggle {
     height: 38px;
     padding: 0 14px;
     border-radius: 19px;
-    background: var(--wa-panel);
-    border: 1px solid var(--wa-border);
-    color: var(--wa-text);
-    font-size: 12px;
-    font-weight: 600;
+    background: rgba(0,168,132,0.15);
+    border: 1px solid var(--wa-green);
+    color: var(--wa-green-light);
+    font-size: 11.5px;
+    font-weight: 700;
     cursor: pointer;
     font-family: inherit;
     flex-shrink: 0;
     transition: all .15s;
     white-space: nowrap;
+    letter-spacing: 0.2px;
   }
-  .role-toggle:hover { border-color: var(--wa-green); }
+  .role-toggle:hover { opacity: 0.8; }
   .role-toggle.lawan {
     background: rgba(248,113,113,0.12);
-    border-color: rgba(248,113,113,0.4);
+    border-color: rgba(248,113,113,0.5);
     color: #f87171;
   }
+  .role-toggle[disabled] { opacity: 0.4; cursor: not-allowed; }
+
+  /* Placeholder in customer mode */
+  .mode-hint {
+    font-size: 11px;
+    color: var(--wa-text-sub);
+    text-align: center;
+    padding: 4px 22px 8px;
+    display: none;
+  }
+  .mode-hint.visible { display: block; }
 </style>
 </head>
 <body>
@@ -559,23 +613,49 @@
       <button class="btn secondary" style="padding:4px 12px;font-size:11px" onclick="clearConversation()">Percakapan Baru</button>
     </div>
 
+    <!-- Mode selector -->
+    <div class="mode-bar">
+      <button class="mode-btn active" id="modeDual" onclick="setMode('dual')">Dua Arah</button>
+      <button class="mode-btn" id="modeBuyer" onclick="setMode('buyer')">Mode Pembeli</button>
+      <button class="mode-btn" id="modeSeller" onclick="setMode('seller')">Mode Penjual</button>
+    </div>
+    <div class="mode-hint" id="modeHint"></div>
+
     <div class="phone-bar">
       <input id="phoneInput" type="text" value="628123456789" placeholder="Nomor HP" />
     </div>
 
-    <div class="quick-chips">
-      <span class="chip" onclick="setRoleAndMsg('lawan','halo kak, mau pesan kue ulang tahun bisa?')">Pembeli tanya</span>
-      <span class="chip" onclick="setRoleAndMsg('lawan','ok deal, udah transfer 200rb ya kak')">Pembeli transfer</span>
-      <span class="chip" onclick="setRoleAndMsg('lawan','mau order lagi, bisa 150rb aja?')">Tawar harga</span>
-      <span class="chip" onclick="setRoleAndMsg('saya','mau pesan tepung 5kg, berapa harganya?')">Order ke supplier</span>
-      <span class="chip" onclick="setRoleAndMsg('lawan','250rb kak, boleh transfer ke BCA xxx')">Supplier kasih harga</span>
-      <span class="chip" onclick="setRoleAndMsg('saya','oke sip, udah aku transfer 250rb ya')">Saya bayar supplier</span>
+    <!-- Chips: dual mode -->
+    <div class="quick-chips" id="chipsDual">
+      <span class="chip" onclick="setRoleAndMsg('lawan','halo kak, mau pesan kue bisa?')">Pembeli tanya</span>
+      <span class="chip" onclick="setRoleAndMsg('saya','bisa, harganya 200rb')">Saya jawab</span>
+      <span class="chip" onclick="setRoleAndMsg('lawan','ok, udah transfer 200rb ya')">Pembeli bayar</span>
+      <span class="chip" onclick="setRoleAndMsg('saya','mau pesan tepung 5kg, berapa?')">Order supplier</span>
+      <span class="chip" onclick="setRoleAndMsg('lawan','250rb kak')">Supplier beri harga</span>
+      <span class="chip" onclick="setRoleAndMsg('saya','oke, udah aku transfer 250rb')">Saya bayar supplier</span>
+    </div>
+    <!-- Chips: buyer mode -->
+    <div class="quick-chips" id="chipsBuyer" style="display:none">
+      <span class="chip" onclick="fillMsg('halo kak, mau pesan kue ulang tahun bisa?')">Tanya produk</span>
+      <span class="chip" onclick="fillMsg('boleh minta detailnya kak?')">Minta detail</span>
+      <span class="chip" onclick="fillMsg('ok deal, berapa nomor rekeningnya?')">Deal, minta rek</span>
+      <span class="chip" onclick="fillMsg('udah aku transfer ya kak')">Konfirmasi transfer</span>
+      <span class="chip" onclick="fillMsg('bisa kurang harganya?')">Tawar harga</span>
+      <span class="chip" onclick="fillMsg('kapan bisa ready?')">Tanya waktu</span>
+    </div>
+    <!-- Chips: seller mode -->
+    <div class="quick-chips" id="chipsSeller" style="display:none">
+      <span class="chip" onclick="fillMsg('mau pesan tepung 5kg, berapa harganya?')">Order supplier</span>
+      <span class="chip" onclick="fillMsg('oke, nanti aku transfer ya')">Setuju harga</span>
+      <span class="chip" onclick="fillMsg('udah aku transfer 250rb ya')">Konfirmasi bayar</span>
+      <span class="chip" onclick="fillMsg('ada stok bahan baku?')">Cek stok</span>
+      <span class="chip" onclick="fillMsg('transferan dari pembeli masuk 500rb')">Catat pemasukan</span>
     </div>
 
     <div class="chat-window" id="chatWindow"></div>
 
     <div class="chat-input">
-      <button class="role-toggle" id="roleToggle" onclick="toggleRole()" title="Ganti peran (Saya/Lawan)">
+      <button class="role-toggle" id="roleToggle" onclick="toggleRole()" title="Ganti peran">
         <span id="roleLabel">Saya</span>
       </button>
       <button class="btn-icon" id="micBtn" onclick="toggleRecording()" title="Rekam suara">
@@ -670,6 +750,7 @@ const API = '';
 let currentRole = 'saya';
 let conversation = [];
 let recordedTxns = [];
+let simMode = 'dual'; // 'dual' | 'buyer' | 'seller'
 
 function phone() { return document.getElementById('phoneInput').value.trim() || '628000000000'; }
 
@@ -680,21 +761,64 @@ function fillMsg(text) {
 }
 
 function setRoleAndMsg(role, text) {
+  if (simMode !== 'dual') return;
   if (currentRole !== role) toggleRole();
   fillMsg(text);
 }
 
+function setMode(mode) {
+  simMode = mode;
+  clearConversation();
+
+  // Mode buttons
+  document.getElementById('modeDual').classList.toggle('active', mode === 'dual');
+  document.getElementById('modeBuyer').classList.toggle('active', mode === 'buyer');
+  document.getElementById('modeSeller').classList.toggle('active', mode === 'seller');
+
+  // Chips
+  document.getElementById('chipsDual').style.display   = mode === 'dual'   ? '' : 'none';
+  document.getElementById('chipsBuyer').style.display  = mode === 'buyer'  ? '' : 'none';
+  document.getElementById('chipsSeller').style.display = mode === 'seller' ? '' : 'none';
+
+  const hint = document.getElementById('modeHint');
+  const toggle = document.getElementById('roleToggle');
+  const ta = document.getElementById('msgInput');
+
+  if (mode === 'buyer') {
+    // Lock to lawan, AI plays seller
+    currentRole = 'lawan';
+    toggle.disabled = true;
+    toggle.classList.add('lawan');
+    document.getElementById('roleLabel').textContent = 'Pembeli';
+    hint.textContent = 'Kamu berperan sebagai pembeli. AI otomatis membalas sebagai penjual.';
+    hint.classList.add('visible');
+    ta.placeholder = 'Ketik pesan sebagai pembeli...';
+  } else if (mode === 'seller') {
+    // Lock to saya, user simulates ordering from supplier (AI plays supplier)
+    currentRole = 'saya';
+    toggle.disabled = true;
+    toggle.classList.remove('lawan');
+    document.getElementById('roleLabel').textContent = 'Penjual';
+    hint.textContent = 'Kamu berperan sebagai penjual. AI otomatis membalas sebagai supplier/pembeli.';
+    hint.classList.add('visible');
+    ta.placeholder = 'Ketik pesan sebagai penjual...';
+  } else {
+    // Dual: free toggle
+    currentRole = 'saya';
+    toggle.disabled = false;
+    toggle.classList.remove('lawan');
+    document.getElementById('roleLabel').textContent = 'Saya';
+    hint.classList.remove('visible');
+    ta.placeholder = 'Ketik pesan transaksi...';
+  }
+}
+
 function toggleRole() {
+  if (simMode !== 'dual') return;
   currentRole = currentRole === 'saya' ? 'lawan' : 'saya';
   const btn = document.getElementById('roleToggle');
-  const label = document.getElementById('roleLabel');
-  if (currentRole === 'lawan') {
-    label.textContent = 'Lawan';
-    btn.classList.add('lawan');
-  } else {
-    label.textContent = 'Saya';
-    btn.classList.remove('lawan');
-  }
+  document.getElementById('roleLabel').textContent = currentRole === 'saya' ? 'Saya' : 'Lawan';
+  btn.classList.toggle('lawan', currentRole === 'lawan');
 }
 
 function clearConversation() {
@@ -718,6 +842,8 @@ function fmtDate(s) {
 
 function addImageBubble(src, role) {
   const w = document.getElementById('chatWindow');
+  const wrap = document.createElement('div');
+  wrap.className = `bubble-wrap ${role}`;
   const div = document.createElement('div');
   div.className = `bubble ${role}`;
   div.style.padding = '4px';
@@ -725,16 +851,32 @@ function addImageBubble(src, role) {
   img.src = src;
   img.style.cssText = 'max-width:200px;max-height:200px;border-radius:8px;display:block';
   div.appendChild(img);
-  w.appendChild(div);
+  wrap.appendChild(div);
+  w.appendChild(wrap);
   w.scrollTop = w.scrollHeight;
 }
 
-function addBubble(text, role) {
+function addBubble(text, role, labelOverride) {
   const w = document.getElementById('chatWindow');
+  if (role === 'system' || role === 'error') {
+    const div = document.createElement('div');
+    div.className = `bubble ${role}`;
+    div.textContent = text;
+    w.appendChild(div);
+    w.scrollTop = w.scrollHeight;
+    return div;
+  }
+  const wrap = document.createElement('div');
+  wrap.className = `bubble-wrap ${role}`;
+  const lbl = document.createElement('div');
+  lbl.className = 'bubble-label';
+  lbl.textContent = labelOverride || (role === 'user' ? 'Saya (Penjual)' : 'Lawan');
   const div = document.createElement('div');
   div.className = `bubble ${role}`;
   div.textContent = text;
-  w.appendChild(div);
+  wrap.appendChild(lbl);
+  wrap.appendChild(div);
+  w.appendChild(wrap);
   w.scrollTop = w.scrollHeight;
   return div;
 }
@@ -748,8 +890,13 @@ async function sendMessage() {
   btn.disabled = true;
   ta.value = '';
 
+  // Label shown on bubble
+  const senderLabel = currentRole === 'saya'
+    ? (simMode === 'seller' ? 'Saya (Penjual)' : 'Saya')
+    : (simMode === 'buyer'  ? 'Saya (Pembeli)' : 'Lawan');
+
   conversation.push({ role: currentRole, content: text });
-  addBubble(text, currentRole === 'saya' ? 'user' : 'bot');
+  addBubble(text, currentRole === 'saya' ? 'user' : 'bot', senderLabel);
 
   const loadingBubble = addBubble('Menganalisis percakapan...', 'system');
 
@@ -776,10 +923,21 @@ async function sendMessage() {
         addBubble(`✓ Tercatat: ${label} Rp ${data.transaction.amount.toLocaleString('id-ID')}`, 'system');
         loadTransactions();
       }
-      // Bot hanya auto-reply saat Lawan yang kirim (simulasi WA Business)
-      if (currentRole === 'lawan' && data.reply && data.reply.trim()) {
-        conversation.push({ role: 'saya', content: data.reply });
-        addBubble(data.reply, 'user');
+      // Auto-reply logic per mode:
+      // buyer mode: user=lawan, AI always replies as penjual
+      // seller mode: user=saya, AI replies as supplier/lawan
+      // dual: AI replies only when lawan sent
+      const shouldReply = (simMode === 'buyer' && currentRole === 'lawan') ||
+                          (simMode === 'seller' && currentRole === 'saya') ||
+                          (simMode === 'dual' && currentRole === 'lawan');
+      const aiReply = data.reply && data.reply.trim()
+        ? data.reply
+        : (shouldReply ? null : null);  // no default fallback
+      if (shouldReply && aiReply) {
+        const aiRole = simMode === 'seller' ? 'lawan' : 'saya';
+        const aiLabel = simMode === 'seller' ? 'Supplier / Lawan' : 'Penjual (AI)';
+        conversation.push({ role: aiRole, content: aiReply });
+        addBubble(aiReply, aiRole === 'saya' ? 'user' : 'bot', aiLabel);
       }
     }
   } catch (e) {
@@ -990,7 +1148,7 @@ async function sendAudioBlob(blob, mimeType) {
     if (!res.ok) {
       addBubble('Error: ' + (data.detail || 'Server error'), 'error');
     } else {
-      if (data.transcript) addBubble(data.transcript, 'user');
+      if (data.transcript) addBubble(data.transcript, 'user', 'Saya (suara)');
       addBubble(data.reply, 'bot');
       loadTransactions();
     }
