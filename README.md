@@ -1,3 +1,13 @@
+---
+title: FinVibe
+emoji: 💬
+colorFrom: green
+colorTo: teal
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # FinVibe
 
 Pencatatan keuangan UMKM otomatis via WhatsApp. Kirim pesan teks, voice note, atau foto bukti transfer — sistem langsung catat dan buat laporan.
