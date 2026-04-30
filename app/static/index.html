@@ -840,10 +840,13 @@ function fmtDate(s) {
   });
 }
 
-function addImageBubble(src, role) {
+function addImageBubble(src, role, labelOverride) {
   const w = document.getElementById('chatWindow');
   const wrap = document.createElement('div');
   wrap.className = `bubble-wrap ${role}`;
+  const lbl = document.createElement('div');
+  lbl.className = 'bubble-label';
+  lbl.textContent = labelOverride || (role === 'user' ? 'Saya' : 'Lawan');
   const div = document.createElement('div');
   div.className = `bubble ${role}`;
   div.style.padding = '4px';
@@ -851,6 +854,7 @@ function addImageBubble(src, role) {
   img.src = src;
   img.style.cssText = 'max-width:200px;max-height:200px;border-radius:8px;display:block';
   div.appendChild(img);
+  wrap.appendChild(lbl);
   wrap.appendChild(div);
   w.appendChild(wrap);
   w.scrollTop = w.scrollHeight;
@@ -1043,7 +1047,9 @@ document.getElementById('imageFileInput').addEventListener('change', async funct
   this.value = '';
 
   const objectUrl = URL.createObjectURL(file);
-  addImageBubble(objectUrl, 'user');
+  const imgBubbleRole = currentRole === 'saya' ? 'user' : 'bot';
+  const imgLabel = currentRole === 'saya' ? 'Saya' : (simMode === 'buyer' ? 'Saya (Pembeli)' : 'Lawan');
+  addImageBubble(objectUrl, imgBubbleRole, imgLabel);
   const loadingBubble = addBubble('Menganalisis bukti pembayaran...', 'system');
   document.getElementById('sendBtn').disabled = true;
 
