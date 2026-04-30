@@ -193,9 +193,20 @@ def analyze_conversation(history: list[dict], recorded: list[dict]) -> dict:
         temperature=0,
     )
     data = json.loads(resp.choices[0].message.content)
+
+    # Deterministic intent override: who sent last message decides money direction
+    last_role = history[-1]["role"] if history else "lawan"
+    action = str(data.get("action", "skip"))
+    if action == "record":
+        # saya transferred = money OUT = expense
+        # lawan transferred = money IN = income
+        intent = "expense" if last_role == "saya" else "income"
+    else:
+        intent = data.get("intent")
+
     return {
-        "action": str(data.get("action", "skip")),
-        "intent": data.get("intent"),
+        "action": action,
+        "intent": intent,
         "amount": int(data.get("amount", 0) or 0),
         "category": str(data.get("category", "")),
         "description": str(data.get("description", "")),
