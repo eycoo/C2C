@@ -194,12 +194,23 @@ def analyze_conversation(history: list[dict], recorded: list[dict]) -> dict:
     )
     data = json.loads(resp.choices[0].message.content)
 
-    # Deterministic intent override: who sent last message decides money direction
-    last_role = history[-1]["role"] if history else "lawan"
+    # Keyword gate: last message MUST contain explicit payment confirmation
+    PAYMENT_KEYWORDS = [
+        "transfer", "bayar", "lunas", "cair", "masuk", "kirim uang",
+        "sudah dibayar", "udah dibayar", "udah bayar", "udah tf",
+        "trf", "tf sudah", "sudah tf", "dana masuk", "pembayaran",
+    ]
+    last_msg = history[-1] if history else {}
+    last_text = last_msg.get("content", "").lower()
+    last_role = last_msg.get("role", "lawan")
+    has_payment_keyword = any(kw in last_text for kw in PAYMENT_KEYWORDS)
+
     action = str(data.get("action", "skip"))
+    # Override: force skip if last message has no payment keyword
+    if action == "record" and not has_payment_keyword:
+        action = "skip"
+
     if action == "record":
-        # saya transferred = money OUT = expense
-        # lawan transferred = money IN = income
         intent = "expense" if last_role == "saya" else "income"
     else:
         intent = data.get("intent")
