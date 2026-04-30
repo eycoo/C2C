@@ -55,10 +55,10 @@ def generate_pdf_report(phone_number: str) -> str:
     elements = []
 
     # Header
-    elements.append(Paragraph("Laporan Keuangan C2C", title_style))
+    elements.append(Paragraph("Laporan Keuangan", title_style))
     elements.append(Paragraph(f"Pengguna: {phone_number}", sub_style))
     elements.append(
-        Paragraph(f"Digenerate: {datetime.now().strftime('%d %B %Y, %H:%M')}", sub_style)
+        Paragraph(f"Dibuat: {datetime.now().strftime('%d %B %Y, %H:%M')}", sub_style)
     )
     elements.append(Spacer(1, 0.5 * cm))
 
@@ -86,7 +86,8 @@ def generate_pdf_report(phone_number: str) -> str:
         intent = row["intent"] or "unknown"
         amount = row["amount"] or 0
         category = row["category"] or "-"
-        description = row["description"] or "-"
+        description_text = row["description"] or "-"
+        description_paragraph = Paragraph(description_text, styles["Normal"])
 
         if intent == "income":
             total_income += amount
@@ -99,7 +100,7 @@ def generate_pdf_report(phone_number: str) -> str:
             label_map.get(intent, intent),
             _fmt_rp(amount),
             category,
-            description,
+            description_paragraph,
         ])
 
     col_widths = [3.5 * cm, 2.8 * cm, 3.0 * cm, 3.0 * cm, 5.5 * cm]
