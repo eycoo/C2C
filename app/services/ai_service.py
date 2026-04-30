@@ -32,9 +32,11 @@ Output: JSON valid saja, tanpa teks lain.
 }
 
 Aturan amount (Rupiah, integer):
-- "20rb" / "20 ribu" / "20k" -> 20000
-- "1.5jt" / "1,5 juta" -> 1500000
-- angka polos seperti "2000" -> 2000
+- "rb" / "ribu" / "k" = dikali 1.000 → "20rb"=20000, "100rb"=100000, "500rb"=500000
+- "jt" / "juta" = dikali 1.000.000 → "1.5jt"=1500000, "2jt"=2000000
+- "ratus" = dikali 100 → "5 ratus"=500
+- angka polos = nilai asli → "2000"=2000
+- JANGAN mengalikan rb lagi — rb sudah berarti ribu (1.000), BUKAN ratus ribu
 
 EXPENSE — hanya jika pesan mengandung sinyal pengeluaran eksplisit:
 beli, bayar, bayarin, habis, keluar, keluarin, belanja, jajan, isi, top up,
