@@ -1165,8 +1165,25 @@ async function sendAudioBlob(blob, mimeType) {
     if (!res.ok) {
       addBubble('Error: ' + (data.detail || 'Server error'), 'error');
     } else {
-      if (data.transcript) addBubble(data.transcript, 'user', 'Saya (suara)');
-      addBubble(data.reply, 'bot');
+      const senderBubble = currentRole === 'saya' ? 'user' : 'bot';
+      const senderLabel = currentRole === 'saya'
+        ? 'Saya (suara)'
+        : (simMode === 'buyer' ? 'Saya — Pembeli (suara)' : 'Lawan (suara)');
+      if (data.transcript) {
+        conversation.push({ role: currentRole, content: data.transcript });
+        addBubble(data.transcript, senderBubble, senderLabel);
+      }
+
+      // AI reply side: opposite of sender
+      const replyRole = currentRole === 'saya' ? 'bot' : 'user';
+      const replyLabel = currentRole === 'saya'
+        ? 'Lawan'
+        : (simMode === 'buyer' ? 'Penjual (AI)' : 'Saya');
+
+      if (data.reply) {
+        conversation.push({ role: replyRole === 'user' ? 'saya' : 'lawan', content: data.reply });
+        addBubble(data.reply, replyRole, replyLabel);
+      }
       loadTransactions();
     }
   } catch(e) {
