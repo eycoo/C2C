@@ -8,7 +8,7 @@ app_port: 7860
 pinned: false
 ---
 
-# C2C — Chat to Core (FinVibe)
+# C2C — Chat to Core 
 
 Pencatatan keuangan UMKM otomatis lewat WhatsApp. Kirim pesan teks, voice note, atau foto bukti transfer, sistem langsung mencatat transaksi dan menyusun laporan keuangan. Tidak perlu aplikasi baru, tidak ada kurva belajar.
 
