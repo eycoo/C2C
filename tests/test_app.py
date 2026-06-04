@@ -1,4 +1,4 @@
-"""Test seluruh fitur C2C/FinVibe.
+"""Test seluruh fitur C2C.
 
 Mock Groq (deterministik, no network) untuk semua endpoint + DB + keyword gate.
 Live Groq smoke test opsional: jalankan dgn  RUN_LIVE=1 pytest -k live
