@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1290" height="1228" viewBox="10 -32 1290 1228" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<rect x="10" y="-32" width="1290" height="1228" fill="#ffffff"/>
+<text x="120" y="34.6" font-size="28" fill="#1e1e1e" text-anchor="start" font-weight="bold">C2C / FinVibe - Pipeline Sistem (Prototype Saat Ini)</text>
+<rect x="50" y="470" width="1170" height="170" rx="12" fill="none" stroke="#1971c2" stroke-width="1" stroke-dasharray="8 6"/>
+<text x="62" y="489.3" font-size="14" fill="#1971c2" text-anchor="start">Groq API</text>
+<rect x="360" y="700" width="680" height="130" rx="12" fill="none" stroke="#e8590c" stroke-width="1" stroke-dasharray="8 6"/>
+<text x="372" y="719.3" font-size="14" fill="#e8590c" text-anchor="start">Database</text>
+<rect x="500" y="878" width="760" height="150" rx="12" fill="none" stroke="#6741d9" stroke-width="1" stroke-dasharray="8 6"/>
+<text x="512" y="897.3" font-size="14" fill="#6741d9" text-anchor="start">RAG Advisory (saat user bertanya)</text>
+<rect x="120" y="80" width="230" height="80" rx="12" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<text x="235" y="115.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Pesan teks</text>
+<text x="235" y="135.2" font-size="16" fill="#1e1e1e" text-anchor="middle">"beli beras 60rb"</text>
+<rect x="380" y="80" width="230" height="80" rx="12" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<text x="495" y="115.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Voice note</text>
+<text x="495" y="135.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Audio .ogg</text>
+<rect x="640" y="80" width="230" height="80" rx="12" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<text x="755" y="115.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Foto</text>
+<text x="755" y="135.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Bukti transfer</text>
+<rect x="900" y="80" width="230" height="80" rx="12" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<text x="1015" y="115.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Percakapan</text>
+<text x="1015" y="135.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Multi-turn chat</text>
+<rect x="300" y="235" width="720" height="70" rx="12" fill="#e9ecef" stroke="#495057" stroke-width="2"/>
+<text x="660" y="265.2" font-size="16" fill="#1e1e1e" text-anchor="middle">WhatsApp Webhook (Meta Cloud API)</text>
+<text x="660" y="285.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Terima pesan WA via webhook, forward ke FastAPI</text>
+<rect x="470" y="360" width="380" height="70" rx="12" fill="#f8f9fa" stroke="#343a40" stroke-width="2"/>
+<text x="660" y="390.2" font-size="16" fill="#1e1e1e" text-anchor="middle">FastAPI Router</text>
+<text x="660" y="410.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Klasifikasi tipe pesan</text>
+<rect x="80" y="500" width="250" height="110" rx="12" fill="#a5d8ff" stroke="#1971c2" stroke-width="2"/>
+<text x="205" y="540.2" font-size="16" fill="#1e1e1e" text-anchor="middle">analyze_message</text>
+<text x="205" y="560.2" font-size="16" fill="#1e1e1e" text-anchor="middle">LLaMA 3.1 8B</text>
+<text x="205" y="580.2" font-size="16" fill="#1e1e1e" text-anchor="middle">NER transaksi</text>
+<rect x="360" y="500" width="250" height="110" rx="12" fill="#a5d8ff" stroke="#1971c2" stroke-width="2"/>
+<text x="485" y="540.2" font-size="16" fill="#1e1e1e" text-anchor="middle">transcribe_audio</text>
+<text x="485" y="560.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Whisper V3 Turbo</text>
+<text x="485" y="580.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Speech-to-text</text>
+<rect x="640" y="500" width="250" height="110" rx="12" fill="#a5d8ff" stroke="#1971c2" stroke-width="2"/>
+<text x="765" y="540.2" font-size="16" fill="#1e1e1e" text-anchor="middle">analyze_image</text>
+<text x="765" y="560.2" font-size="16" fill="#1e1e1e" text-anchor="middle">LLaMA 4 Scout</text>
+<text x="765" y="580.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Vision OCR</text>
+<rect x="920" y="500" width="250" height="110" rx="12" fill="#a5d8ff" stroke="#1971c2" stroke-width="2"/>
+<text x="1045" y="540.2" font-size="16" fill="#1e1e1e" text-anchor="middle">analyze_conv</text>
+<text x="1045" y="560.2" font-size="16" fill="#1e1e1e" text-anchor="middle">LLaMA 3.1 8B</text>
+<text x="1045" y="580.2" font-size="16" fill="#1e1e1e" text-anchor="middle">+ Keyword Gate</text>
+<rect x="380" y="720" width="300" height="90" rx="12" fill="#ffd8a8" stroke="#e8590c" stroke-width="2"/>
+<text x="530" y="760.2" font-size="16" fill="#1e1e1e" text-anchor="middle">PostgreSQL</text>
+<text x="530" y="780.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Transaksi, users, hutang</text>
+<rect x="720" y="720" width="300" height="90" rx="12" fill="#ffd8a8" stroke="#e8590c" stroke-width="2"/>
+<text x="870" y="760.2" font-size="16" fill="#1e1e1e" text-anchor="middle">pgvector</text>
+<text x="870" y="780.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Knowledge base RAG</text>
+<rect x="120" y="900" width="300" height="90" rx="12" fill="#d0ebff" stroke="#1971c2" stroke-width="2"/>
+<text x="270" y="940.2" font-size="16" fill="#1e1e1e" text-anchor="middle">WhatsApp Out</text>
+<text x="270" y="960.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Respons ke user via WA API</text>
+<rect x="540" y="900" width="220" height="100" rx="12" fill="#d0bfff" stroke="#6741d9" stroke-width="2"/>
+<text x="650" y="935.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Embedding</text>
+<text x="650" y="955.2" font-size="16" fill="#1e1e1e" text-anchor="middle">MiniLM-L-12-v2</text>
+<text x="650" y="975.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Lokal (CPU)</text>
+<rect x="780" y="900" width="220" height="100" rx="12" fill="#d0bfff" stroke="#6741d9" stroke-width="2"/>
+<text x="890" y="935.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Retrieval</text>
+<text x="890" y="955.2" font-size="16" fill="#1e1e1e" text-anchor="middle">pgvector search</text>
+<text x="890" y="975.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Top-3 chunks</text>
+<rect x="1020" y="900" width="220" height="100" rx="12" fill="#d0bfff" stroke="#6741d9" stroke-width="2"/>
+<text x="1130" y="935.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Generate</text>
+<text x="1130" y="955.2" font-size="16" fill="#1e1e1e" text-anchor="middle">LLaMA 3.1 8B</text>
+<text x="1130" y="975.2" font-size="16" fill="#1e1e1e" text-anchor="middle">Groq API</text>
+<path d="M 235 160 L 660 235" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="660,235 648,238 650,228" fill="#343a40"/>
+<path d="M 495 160 L 660 235" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="660,235 648,235 652,226" fill="#343a40"/>
+<path d="M 755 160 L 660 235" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="660,235 665,224 672,232" fill="#343a40"/>
+<path d="M 1015 160 L 660 235" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="660,235 669,228 672,238" fill="#343a40"/>
+<path d="M 660 305 L 660 360" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="660,360 655,349 665,349" fill="#343a40"/>
+<path d="M 660 430 L 205 500" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="205,500 215,493 216,504" fill="#343a40"/>
+<rect x="184" y="488" width="42" height="24" fill="#ffffff"/>
+<text x="205" y="501.3" font-size="14" fill="#343a40" text-anchor="middle">teks</text>
+<path d="M 660 430 L 485 500" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="485,500 493,491 497,501" fill="#343a40"/>
+<rect x="460" y="488" width="50" height="24" fill="#ffffff"/>
+<text x="485" y="501.3" font-size="14" fill="#343a40" text-anchor="middle">audio</text>
+<path d="M 660 430 L 765 500" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="765,500 753,498 759,490" fill="#343a40"/>
+<rect x="740" y="488" width="50" height="24" fill="#ffffff"/>
+<text x="765" y="501.3" font-size="14" fill="#343a40" text-anchor="middle">image</text>
+<path d="M 660 430 L 1045 500" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1045,500 1033,503 1035,493" fill="#343a40"/>
+<rect x="1024" y="488" width="42" height="24" fill="#ffffff"/>
+<text x="1045" y="501.3" font-size="14" fill="#343a40" text-anchor="middle">chat</text>
+<path d="M 360 555 L 330 555" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="330,555 341,550 341,560" fill="#343a40"/>
+<rect x="281" y="543" width="98" height="24" fill="#ffffff"/>
+<text x="330" y="556.3" font-size="14" fill="#343a40" text-anchor="middle">transkripsi</text>
+<path d="M 280 610 L 430 720" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="430,720 418,718 424,709" fill="#343a40"/>
+<path d="M 765 610 L 560 720" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="560,720 567,710 572,719" fill="#343a40"/>
+<path d="M 1000 610 L 630 720" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="630,720 639,712 642,722" fill="#343a40"/>
+<path d="M 130 610 L 270 900" fill="none" stroke="#1971c2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="270,900 261,893 270,888" fill="#1971c2"/>
+<path d="M 430 810 L 300 900" fill="none" stroke="#e8590c" stroke-width="2" stroke-dasharray="7 6" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="300,900 306,890 312,898" fill="#e8590c"/>
+<rect x="259" y="888" width="82" height="24" fill="#ffffff"/>
+<text x="300" y="901.3" font-size="14" fill="#e8590c" text-anchor="middle">data user</text>
+<path d="M 870 810 L 890 900" fill="none" stroke="#e8590c" stroke-width="2" stroke-dasharray="7 6" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="890,900 883,891 893,888" fill="#e8590c"/>
+<rect x="861" y="888" width="58" height="24" fill="#ffffff"/>
+<text x="890" y="901.3" font-size="14" fill="#e8590c" text-anchor="middle">search</text>
+<path d="M 760 950 L 780 950" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="780,950 769,955 769,945" fill="#343a40"/>
+<path d="M 1000 950 L 1020 950" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1020,950 1009,955 1009,945" fill="#343a40"/>
+<path d="M 1000 610 L 1045 855 L 490 855 L 650 900" fill="none" stroke="#6741d9" stroke-width="2" stroke-dasharray="7 6" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="650,900 638,902 641,892" fill="#6741d9"/>
+<rect x="465" y="843" width="50" height="24" fill="#ffffff"/>
+<text x="490" y="856.3" font-size="14" fill="#6741d9" text-anchor="middle">tanya</text>
+<path d="M 1130 1000 L 1130 1060 L 270 1060 L 270 990" fill="none" stroke="#6741d9" stroke-width="2" stroke-dasharray="7 6" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="270,990 275,1001 265,1001" fill="#6741d9"/>
+<rect x="237" y="1048" width="66" height="24" fill="#ffffff"/>
+<text x="270" y="1061.3" font-size="14" fill="#6741d9" text-anchor="middle">respons</text>
+<text x="120" y="1125.2" font-size="16" fill="#1e1e1e" text-anchor="start">KETERANGAN</text>
+<rect x="120" y="1140" width="22" height="16" rx="12" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<text x="148" y="1152.3" font-size="13" fill="#343a40" text-anchor="start">Input WhatsApp</text>
+<rect x="292" y="1140" width="22" height="16" rx="12" fill="#a5d8ff" stroke="#1971c2" stroke-width="2"/>
+<text x="320" y="1152.3" font-size="13" fill="#343a40" text-anchor="start">AI Processing (Groq)</text>
+<rect x="512" y="1140" width="22" height="16" rx="12" fill="#ffd8a8" stroke="#e8590c" stroke-width="2"/>
+<text x="540" y="1152.3" font-size="13" fill="#343a40" text-anchor="start">Database</text>
+<rect x="636" y="1140" width="22" height="16" rx="12" fill="#d0ebff" stroke="#1971c2" stroke-width="2"/>
+<text x="664" y="1152.3" font-size="13" fill="#343a40" text-anchor="start">Output</text>
+<rect x="744" y="1140" width="22" height="16" rx="12" fill="#d0bfff" stroke="#6741d9" stroke-width="2"/>
+<text x="772" y="1152.3" font-size="13" fill="#343a40" text-anchor="start">RAG Advisory</text>
+<rect x="900" y="1140" width="22" height="16" rx="12" fill="#e9ecef" stroke="#495057" stroke-width="2"/>
+<text x="928" y="1152.3" font-size="13" fill="#343a40" text-anchor="start">Infra</text>
+</svg>

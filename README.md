@@ -14,6 +14,16 @@ Pencatatan keuangan UMKM otomatis via WhatsApp. Kirim pesan teks, voice note, at
 
 **AI engine**: Groq API (llama-3.1-8b-instant + whisper-large-v3-turbo + llama-4-scout-17b-16e-instruct)
 
+## Arsitektur
+
+### Prototype (yang berjalan sekarang)
+
+![Arsitektur Prototype](assets/arsitektur_prototype.svg)
+
+### Produk Akhir (target produksi, SLM-first)
+
+![Arsitektur Produk Akhir](assets/arsitektur_produk_akhir.svg)
+
 ## Quick Start
 
 ```bash

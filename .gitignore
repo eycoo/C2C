@@ -13,3 +13,11 @@ context/
 *.log
 .idea/
 .vscode/
+
+# Working docs — not for submission repo
+PROPOSAL_v2.txt
+PROPOSAL_v2_REFERENSI.txt
+*.excalidraw
+*.lnk
+refrence/
+template/

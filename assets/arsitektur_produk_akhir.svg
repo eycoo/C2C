@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="1678" viewBox="10 -32 1640 1678" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<rect x="10" y="-32" width="1640" height="1678" fill="#ffffff"/>
+<text x="120" y="34.6" font-size="28" fill="#1e1e1e" text-anchor="start" font-weight="bold">C2C / FinVibe - Pipeline Produk Akhir (Produksi, SLM-first)</text>
+<rect x="50" y="600" width="1290" height="180" rx="12" fill="none" stroke="#0c8599" stroke-width="1" stroke-dasharray="8 6"/>
+<text x="62" y="619.3" font-size="14" fill="#0c8599" text-anchor="start">Pemrosesan SLM Lokal (VPS tanpa GPU)</text>
+<rect x="1020" y="810" width="300" height="370" rx="12" fill="none" stroke="#6741d9" stroke-width="1" stroke-dasharray="8 6"/>
+<text x="1032" y="829.3" font-size="14" fill="#6741d9" text-anchor="start">RAG Advisory</text>
+<rect x="360" y="1200" width="680" height="120" rx="12" fill="none" stroke="#e8590c" stroke-width="1" stroke-dasharray="8 6"/>
+<text x="372" y="1219.3" font-size="14" fill="#e8590c" text-anchor="start">Database (PostgreSQL 16 + pgvector)</text>
+<rect x="120" y="80" width="240" height="80" rx="12" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<text x="240" y="114.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Pesan teks</text>
+<text x="240" y="133.0" font-size="15" fill="#1e1e1e" text-anchor="middle">"beli beras 60rb"</text>
+<rect x="420" y="80" width="240" height="80" rx="12" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<text x="540" y="114.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Voice note</text>
+<text x="540" y="133.0" font-size="15" fill="#1e1e1e" text-anchor="middle">Audio .ogg</text>
+<rect x="720" y="80" width="240" height="80" rx="12" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<text x="840" y="114.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Foto</text>
+<text x="840" y="133.0" font-size="15" fill="#1e1e1e" text-anchor="middle">Bukti transfer</text>
+<rect x="1020" y="80" width="240" height="80" rx="12" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<text x="1140" y="114.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Percakapan</text>
+<text x="1140" y="133.0" font-size="15" fill="#1e1e1e" text-anchor="middle">Multi-turn chat</text>
+<rect x="340" y="240" width="720" height="70" rx="12" fill="#a5d8ff" stroke="#1971c2" stroke-width="2"/>
+<text x="700" y="269.2" font-size="15" fill="#1e1e1e" text-anchor="middle">WhatsApp Business API (Meta Cloud)</text>
+<text x="700" y="288.0" font-size="15" fill="#1e1e1e" text-anchor="middle">Webhook ingestion + auto-reply</text>
+<rect x="470" y="360" width="460" height="70" rx="12" fill="#eebefa" stroke="#9c36b5" stroke-width="2"/>
+<text x="700" y="389.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Redis Queue</text>
+<text x="700" y="408.0" font-size="15" fill="#1e1e1e" text-anchor="middle">Buffer beban + retry + dedup</text>
+<rect x="480" y="480" width="440" height="70" rx="12" fill="#f8f9fa" stroke="#343a40" stroke-width="2"/>
+<text x="700" y="509.2" font-size="15" fill="#1e1e1e" text-anchor="middle">FastAPI Backend (async)</text>
+<text x="700" y="528.0" font-size="15" fill="#1e1e1e" text-anchor="middle">Router + klasifikasi tipe pesan</text>
+<rect x="70" y="630" width="270" height="120" rx="12" fill="#99e9f2" stroke="#0c8599" stroke-width="2"/>
+<text x="205" y="674.2" font-size="15" fill="#1e1e1e" text-anchor="middle">NLP Pipeline</text>
+<text x="205" y="693.0" font-size="15" fill="#1e1e1e" text-anchor="middle">IndoBERT NER (fine-tuned)</text>
+<text x="205" y="711.8" font-size="15" fill="#1e1e1e" text-anchor="middle">+ normalizer slang 200+</text>
+<rect x="380" y="630" width="270" height="120" rx="12" fill="#99e9f2" stroke="#0c8599" stroke-width="2"/>
+<text x="515" y="674.2" font-size="15" fill="#1e1e1e" text-anchor="middle">ASR Pipeline</text>
+<text x="515" y="693.0" font-size="15" fill="#1e1e1e" text-anchor="middle">Whisper Medium (lokal)</text>
+<text x="515" y="711.8" font-size="15" fill="#1e1e1e" text-anchor="middle">+ noisereduce + ffmpeg</text>
+<rect x="690" y="630" width="240" height="120" rx="12" fill="#99e9f2" stroke="#0c8599" stroke-width="2"/>
+<text x="810" y="674.2" font-size="15" fill="#1e1e1e" text-anchor="middle">CV Pipeline</text>
+<text x="810" y="693.0" font-size="15" fill="#1e1e1e" text-anchor="middle">YOLOv8 + PaddleOCR</text>
+<text x="810" y="711.8" font-size="15" fill="#1e1e1e" text-anchor="middle">(lokal)</text>
+<rect x="1000" y="630" width="300" height="120" rx="12" fill="#99e9f2" stroke="#0c8599" stroke-width="2"/>
+<text x="1150" y="674.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Conversation Engine</text>
+<text x="1150" y="693.0" font-size="15" fill="#1e1e1e" text-anchor="middle">Keyword Gate (Python)</text>
+<text x="1150" y="711.8" font-size="15" fill="#1e1e1e" text-anchor="middle">Deterministik, anti-override</text>
+<rect x="690" y="810" width="320" height="110" rx="12" fill="#ffc9c9" stroke="#e03131" stroke-width="2"/>
+<text x="850" y="849.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Fraud Detection (CV + statistik)</text>
+<text x="850" y="868.0" font-size="15" fill="#1e1e1e" text-anchor="middle">ELA + EXIF + OCR confidence</text>
+<text x="850" y="886.8" font-size="15" fill="#1e1e1e" text-anchor="middle">Risk 0-100 -&gt; approve/review/reject</text>
+<rect x="430" y="970" width="480" height="70" rx="12" fill="#f8f9fa" stroke="#343a40" stroke-width="2"/>
+<text x="670" y="999.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Normalisasi -&gt; JSON terstruktur</text>
+<text x="670" y="1018.0" font-size="15" fill="#1e1e1e" text-anchor="middle">(confidence score per atribut)</text>
+<rect x="430" y="1090" width="480" height="70" rx="12" fill="#f8f9fa" stroke="#343a40" stroke-width="2"/>
+<text x="670" y="1119.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Reconciliation Engine (SQL)</text>
+<text x="670" y="1138.0" font-size="15" fill="#1e1e1e" text-anchor="middle">kas / stok / piutang</text>
+<rect x="380" y="1220" width="300" height="90" rx="12" fill="#ffd8a8" stroke="#e8590c" stroke-width="2"/>
+<text x="530" y="1259.2" font-size="15" fill="#1e1e1e" text-anchor="middle">PostgreSQL 16</text>
+<text x="530" y="1278.0" font-size="15" fill="#1e1e1e" text-anchor="middle">Transaksi, users, piutang</text>
+<rect x="720" y="1220" width="300" height="90" rx="12" fill="#ffd8a8" stroke="#e8590c" stroke-width="2"/>
+<text x="870" y="1259.2" font-size="15" fill="#1e1e1e" text-anchor="middle">pgvector</text>
+<text x="870" y="1278.0" font-size="15" fill="#1e1e1e" text-anchor="middle">Knowledge base RAG</text>
+<rect x="1320" y="1200" width="290" height="110" rx="12" fill="#e9ecef" stroke="#495057" stroke-width="2"/>
+<text x="1465" y="1229.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Keamanan &amp; Kepatuhan</text>
+<text x="1465" y="1248.0" font-size="15" fill="#1e1e1e" text-anchor="middle">AES-256 TDE | TLS 1.3</text>
+<text x="1465" y="1266.8" font-size="15" fill="#1e1e1e" text-anchor="middle">Media auto-hapus &lt;1 jam</text>
+<text x="1465" y="1285.5" font-size="15" fill="#1e1e1e" text-anchor="middle">UU PDP No.27/2022</text>
+<rect x="1040" y="840" width="240" height="90" rx="12" fill="#d0bfff" stroke="#6741d9" stroke-width="2"/>
+<text x="1160" y="869.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Embedding</text>
+<text x="1160" y="888.0" font-size="15" fill="#1e1e1e" text-anchor="middle">sentence-transformers</text>
+<text x="1160" y="906.8" font-size="15" fill="#1e1e1e" text-anchor="middle">Lokal (CPU)</text>
+<rect x="1040" y="960" width="240" height="90" rx="12" fill="#d0bfff" stroke="#6741d9" stroke-width="2"/>
+<text x="1160" y="989.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Retrieval</text>
+<text x="1160" y="1008.0" font-size="15" fill="#1e1e1e" text-anchor="middle">pgvector top-k</text>
+<text x="1160" y="1026.8" font-size="15" fill="#1e1e1e" text-anchor="middle">KB regulasi + pasar</text>
+<rect x="1040" y="1080" width="240" height="90" rx="12" fill="#d0bfff" stroke="#6741d9" stroke-width="2"/>
+<text x="1160" y="1109.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Generate</text>
+<text x="1160" y="1128.0" font-size="15" fill="#1e1e1e" text-anchor="middle">Phi-3 Mini (lokal)</text>
+<text x="1160" y="1146.8" font-size="15" fill="#1e1e1e" text-anchor="middle">Advisor jawaban</text>
+<rect x="60" y="1360" width="250" height="100" rx="12" fill="#d0ebff" stroke="#1971c2" stroke-width="2"/>
+<text x="185" y="1404.2" font-size="15" fill="#1e1e1e" text-anchor="middle">WhatsApp Out</text>
+<text x="185" y="1423.0" font-size="15" fill="#1e1e1e" text-anchor="middle">Auto-reply &lt;3 detik</text>
+<rect x="340" y="1360" width="250" height="100" rx="12" fill="#bac8ff" stroke="#3b5bdb" stroke-width="2"/>
+<text x="465" y="1404.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Credit Scoring Engine</text>
+<text x="465" y="1423.0" font-size="15" fill="#1e1e1e" text-anchor="middle">4 dimensi -&gt; skor 0-100</text>
+<rect x="620" y="1360" width="250" height="100" rx="12" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<text x="745" y="1404.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Laporan PDF SAK EMKM</text>
+<text x="745" y="1423.0" font-size="15" fill="#1e1e1e" text-anchor="middle">(ReportLab)</text>
+<rect x="900" y="1360" width="250" height="100" rx="12" fill="#99e9f2" stroke="#0c8599" stroke-width="2"/>
+<text x="1025" y="1404.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Dashboard Web</text>
+<text x="1025" y="1423.0" font-size="15" fill="#1e1e1e" text-anchor="middle">(Next.js 14)</text>
+<rect x="1180" y="1360" width="270" height="100" rx="12" fill="#fcc2d7" stroke="#c2255c" stroke-width="2"/>
+<text x="1315" y="1404.2" font-size="15" fill="#1e1e1e" text-anchor="middle">Retensi Pelanggan</text>
+<text x="1315" y="1423.0" font-size="15" fill="#1e1e1e" text-anchor="middle">Reminder piutang / digest / alert</text>
+<path d="M 240 160 L 700 240" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="700,240 688,243 690,233" fill="#343a40"/>
+<path d="M 540 160 L 700 240" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="700,240 688,240 693,230" fill="#343a40"/>
+<path d="M 840 160 L 700 240" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="700,240 707,230 712,239" fill="#343a40"/>
+<path d="M 1140 160 L 700 240" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="700,240 710,233 712,243" fill="#343a40"/>
+<path d="M 700 310 L 700 360" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="700,360 695,349 705,349" fill="#343a40"/>
+<path d="M 700 430 L 700 480" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="700,480 695,469 705,469" fill="#343a40"/>
+<path d="M 700 550 L 205 630" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="205,630 215,623 216,633" fill="#343a40"/>
+<rect x="184" y="618" width="42" height="24" fill="#ffffff"/>
+<text x="205" y="631.3" font-size="14" fill="#343a40" text-anchor="middle">teks</text>
+<path d="M 700 550 L 515 630" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="515,630 523,621 527,631" fill="#343a40"/>
+<rect x="490" y="618" width="50" height="24" fill="#ffffff"/>
+<text x="515" y="631.3" font-size="14" fill="#343a40" text-anchor="middle">audio</text>
+<path d="M 700 550 L 810 630" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="810,630 798,628 804,619" fill="#343a40"/>
+<rect x="785" y="618" width="50" height="24" fill="#ffffff"/>
+<text x="810" y="631.3" font-size="14" fill="#343a40" text-anchor="middle">image</text>
+<path d="M 700 550 L 1150 630" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1150,630 1138,633 1140,623" fill="#343a40"/>
+<rect x="1129" y="618" width="42" height="24" fill="#ffffff"/>
+<text x="1150" y="631.3" font-size="14" fill="#343a40" text-anchor="middle">chat</text>
+<path d="M 380 690 L 340 690" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="340,690 351,685 351,695" fill="#343a40"/>
+<rect x="291" y="678" width="98" height="24" fill="#ffffff"/>
+<text x="340" y="691.3" font-size="14" fill="#343a40" text-anchor="middle">transkripsi</text>
+<path d="M 810 750 L 850 810" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="850,810 840,804 848,798" fill="#343a40"/>
+<rect x="825" y="798" width="50" height="24" fill="#ffffff"/>
+<text x="850" y="811.3" font-size="14" fill="#343a40" text-anchor="middle">citra</text>
+<path d="M 205 750 L 560 970" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="560,970 548,969 554,960" fill="#343a40"/>
+<path d="M 1050 750 L 1050 940 L 820 940 L 820 970" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="820,970 815,959 825,959" fill="#343a40"/>
+<rect x="779" y="928" width="82" height="24" fill="#ffffff"/>
+<text x="820" y="941.3" font-size="14" fill="#343a40" text-anchor="middle">transaksi</text>
+<path d="M 850 920 L 700 970" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="700,970 709,962 712,972" fill="#343a40"/>
+<path d="M 670 1040 L 670 1090" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="670,1090 665,1079 675,1079" fill="#343a40"/>
+<path d="M 670 1160 L 530 1220" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="530,1220 538,1211 542,1221" fill="#343a40"/>
+<path d="M 1160 750 L 1160 840" fill="none" stroke="#6741d9" stroke-width="2" stroke-dasharray="7 6" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1160,840 1155,829 1165,829" fill="#6741d9"/>
+<rect x="1135" y="828" width="50" height="24" fill="#ffffff"/>
+<text x="1160" y="841.3" font-size="14" fill="#6741d9" text-anchor="middle">tanya</text>
+<path d="M 1160 930 L 1160 960" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1160,960 1155,949 1165,949" fill="#343a40"/>
+<path d="M 1160 1050 L 1160 1080" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1160,1080 1155,1069 1165,1069" fill="#343a40"/>
+<path d="M 870 1220 L 1100 1050" fill="none" stroke="#e8590c" stroke-width="2" stroke-dasharray="7 6" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1100,1050 1094,1061 1088,1052" fill="#e8590c"/>
+<rect x="1071" y="1038" width="58" height="24" fill="#ffffff"/>
+<text x="1100" y="1051.3" font-size="14" fill="#e8590c" text-anchor="middle">vektor</text>
+<path d="M 1160 1170 L 1160 1335 L 185 1335 L 185 1360" fill="none" stroke="#6741d9" stroke-width="2" stroke-dasharray="7 6" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="185,1360 180,1349 190,1349" fill="#6741d9"/>
+<rect x="152" y="1323" width="66" height="24" fill="#ffffff"/>
+<text x="185" y="1336.3" font-size="14" fill="#6741d9" text-anchor="middle">respons</text>
+<path d="M 420 1310 L 185 1360" fill="none" stroke="#e8590c" stroke-width="2" stroke-dasharray="7 6" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="185,1360 194,1353 197,1363" fill="#e8590c"/>
+<rect x="144" y="1348" width="82" height="24" fill="#ffffff"/>
+<text x="185" y="1361.3" font-size="14" fill="#e8590c" text-anchor="middle">data user</text>
+<path d="M 480 1310 L 465 1360" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="465,1360 463,1348 473,1351" fill="#343a40"/>
+<path d="M 560 1310 L 745 1360" fill="none" stroke="#343a40" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="745,1360 733,1362 736,1352" fill="#343a40"/>
+<path d="M 620 1310 L 1025 1360" fill="none" stroke="#1971c2" stroke-width="2" stroke-dasharray="7 6" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1025,1360 1014,1364 1015,1353" fill="#1971c2"/>
+<path d="M 660 1310 L 1315 1360" fill="none" stroke="#c2255c" stroke-width="2" stroke-dasharray="7 6" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1315,1360 1304,1364 1305,1354" fill="#c2255c"/>
+<path d="M 1315 1360 L 1315 1500 L 185 1500 L 185 1360" fill="none" stroke="#c2255c" stroke-width="2" stroke-dasharray="7 6" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="185,1360 190,1371 180,1371" fill="#c2255c"/>
+<rect x="136" y="1488" width="98" height="24" fill="#ffffff"/>
+<text x="185" y="1501.3" font-size="14" fill="#c2255c" text-anchor="middle">reminder WA</text>
+<text x="120" y="1575.2" font-size="16" fill="#1e1e1e" text-anchor="start">KETERANGAN</text>
+<rect x="120" y="1590" width="22" height="16" rx="12" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2"/>
+<text x="148" y="1602.3" font-size="13" fill="#343a40" text-anchor="start">Input</text>
+<rect x="215" y="1590" width="22" height="16" rx="12" fill="#a5d8ff" stroke="#1971c2" stroke-width="2"/>
+<text x="243" y="1602.3" font-size="13" fill="#343a40" text-anchor="start">Gateway</text>
+<rect x="326" y="1590" width="22" height="16" rx="12" fill="#eebefa" stroke="#9c36b5" stroke-width="2"/>
+<text x="354" y="1602.3" font-size="13" fill="#343a40" text-anchor="start">Queue</text>
+<rect x="421" y="1590" width="22" height="16" rx="12" fill="#99e9f2" stroke="#0c8599" stroke-width="2"/>
+<text x="449" y="1602.3" font-size="13" fill="#343a40" text-anchor="start">SLM Lokal</text>
+<rect x="548" y="1590" width="22" height="16" rx="12" fill="#ffc9c9" stroke="#e03131" stroke-width="2"/>
+<text x="576" y="1602.3" font-size="13" fill="#343a40" text-anchor="start">Fraud (CV)</text>
+<rect x="683" y="1590" width="22" height="16" rx="12" fill="#ffd8a8" stroke="#e8590c" stroke-width="2"/>
+<text x="711" y="1602.3" font-size="13" fill="#343a40" text-anchor="start">Database</text>
+<rect x="802" y="1590" width="22" height="16" rx="12" fill="#d0bfff" stroke="#6741d9" stroke-width="2"/>
+<text x="830" y="1602.3" font-size="13" fill="#343a40" text-anchor="start">RAG</text>
+<rect x="881" y="1590" width="22" height="16" rx="12" fill="#d0ebff" stroke="#1971c2" stroke-width="2"/>
+<text x="909" y="1602.3" font-size="13" fill="#343a40" text-anchor="start">Output</text>
+<rect x="984" y="1590" width="22" height="16" rx="12" fill="#fcc2d7" stroke="#c2255c" stroke-width="2"/>
+<text x="1012" y="1602.3" font-size="13" fill="#343a40" text-anchor="start">Credit/Retensi</text>
+<rect x="1151" y="1590" width="22" height="16" rx="12" fill="#e9ecef" stroke="#495057" stroke-width="2"/>
+<text x="1179" y="1602.3" font-size="13" fill="#343a40" text-anchor="start">Infra</text>
+</svg>
