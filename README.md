@@ -18,11 +18,11 @@ Pencatatan keuangan UMKM otomatis via WhatsApp. Kirim pesan teks, voice note, at
 
 ### Prototype (yang berjalan sekarang)
 
-![Arsitektur Prototype](assets/arsitektur_prototype.svg)
+![Arsitektur Prototype](assets/prototype_c2c.svg)
 
 ### Produk Akhir (target produksi, SLM-first)
 
-![Arsitektur Produk Akhir](assets/arsitektur_produk_akhir.svg)
+![Arsitektur Produk Akhir](assets/pipeline_akhir_c2c.svg)
 
 ## Quick Start
 
