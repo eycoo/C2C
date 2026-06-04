@@ -20,7 +20,7 @@ Pencatatan keuangan UMKM otomatis lewat WhatsApp. Kirim pesan teks, voice note, 
 
 ![Arsitektur Prototype](assets/prototype_c2c.svg)
 
-### Produk Akhir (target produksi, SLM-first)
+### Produk Akhir 
 
 ![Arsitektur Produk Akhir](assets/pipeline_akhir_c2c.svg)
 
